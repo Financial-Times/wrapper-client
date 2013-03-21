@@ -1,3 +1,8 @@
+require('nodefly').profile(
+    process.env.NODEFLY_APPLICATION_KEY,
+    [process.env.APPLICATION_NAME,'wrapper-client']
+);
+
 var express = require("express"),
     logger = require("ft-node-modules/logger").init({
         loggly: {

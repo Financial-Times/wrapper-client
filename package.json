@@ -7,7 +7,8 @@
         "express": "3.x",
         "request": "2.16.6",
         "dot": "0.2.6",
-        "ft-node-modules":"git+https://github.com/Financial-Times/ft-node-modules.git"
+        "ft-node-modules":"git+https://github.com/Financial-Times/ft-node-modules.git",
+        "nodefly": "stable"
     },
     "engines": {
         "node": "0.8.x",
