@@ -1,34 +1,34 @@
 var request = require("request"),
-    doT = require("dot");
+    doT = require("dot"),
+    ftUtils = require("ft-node-modules/lib/utils.js");
 
-// have to specify all settings otherwise strip doesn't work
-doT.templateSettings = {
-    evaluate: /\{\{([\s\S]+?)\}\}/g,
-    //interpolate: /\{\{=([\s\S]+?)\}\}/g,
-    interpolate: /<!--(ft\.[\s\S]+?)-->/g,
-    encode: /\{\{!([\s\S]+?)\}\}/g,
-    use: /\{\{#([\s\S]+?)\}\}/g,
-    define: /\{\{##\s*([\w\.$]+)\s*(\:|=)([\s\S]+?)#\}\}/g,
-    conditional: /\{\{\?(\?)?\s*([\s\S]*?)\s*\}\}/g,
-    iterate: /\{\{~\s*(?:\}\}|([\s\S]+?)\s*\:\s*([\w$]+)\s*(?:\:\s*([\w$]+))?\s*\}\})/g,
-    varname: 'ft',
-    strip: false,
-    append: true,
-    selfcontained: false
+var cache = {},
+
+    config = {
+        wrapperRoot: "http://www.ft.com/thirdpartywrapper/",
+        wrapperUpdateMs: 3600000 // 1 hr
+    };
+
+// The initialise the logger; merge default and passed config then setup the winston transports
+exports.init = function (passedConfig) {
+    "use strict";
+    config = ftUtils.mergeConfig(config, passedConfig);
+    console.info("[WRAPPER] Using config", config);
 };
 
-var cache = {};
-
-
+/**
+ * Fetch a wrapper from FT.com.  This module handle caching of the wrapper and (TODO re-fetches it hourly).
+ * @param wrapperId The wrapper id.  Follows the URL convention "http://www.ft.com/thirdpartywrapper/<wrapperid>" e.g. "http://www.ft.com/thirdpartywrapper/ftalphaville"
+ * @param callback Passes the retrieved wrapper html back
+ */
 exports.fetch = function (wrapperId, callback) {
 
-    var root = "http://www.ft.com/thirdpartywrapper/",
-        url = root + wrapperId,
+    var url = config.wrapperRoot + wrapperId,
         cachedHtml = cache[wrapperId];
 
 
     if (!cachedHtml) {
-        console.log("Fetching wrapper", url);
+        console.info("[WRAPPER] Fetching", url);
         request(url, function (err, response, body) {
             //if (!error && response.statusCode == 200) {
 
@@ -41,6 +41,7 @@ exports.fetch = function (wrapperId, callback) {
             //}
         });
     } else {
+        console.info("[WRAPPER] Using cached", wrapperId);
         process.nextTick(function () {
             callback(null, cache[wrapperId]);
         });
@@ -48,14 +49,18 @@ exports.fetch = function (wrapperId, callback) {
 
 };
 
-
 exports.process = function (wrapperHtml, model) {
 
-    wrapperHtml = wrapperHtml.replace(/<!--ft-replace:/g, "<!--ft."); // legacy
-    wrapperHtml = wrapperHtml.replace(/<!--ft:/g, "<!--ft."); // convert "ft:" to object notation "ft."
-    wrapperHtml = wrapperHtml.replace(/(<!--.*):(.*-->)/g, RegExp.$1 + "." + RegExp.$2); // handle : in variable names
+    //wrapperHtml = wrapperHtml.replace(/<!--ft-replace:/g, "<!--ft."); // legacy
+    //wrapperHtml = wrapperHtml.replace(/<!--ft:/g, "<!--ft."); // convert "ft:" to object notation "ft."
+    console.info("[WRAPPER] Processing");
 
-    var tempFn = doT.template(wrapperHtml),
+    wrapperHtml = wrapperHtml.replace(/(<!--.*):(.*-->)/g, "$1.$2"); // handle : in variable names
+
+    var tempFn = doT.template(wrapperHtml, {
+            interpolate: /<!--(ft\.[\s\S]+?)-->/g,
+            varname: 'ft'
+        }),
         result = tempFn(model);
 
     return result;
