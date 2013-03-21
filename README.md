@@ -4,8 +4,9 @@ About
 This is a reference web app which grabs an FT wrapper and populates it with third party content and renders the result in a web browser.
 
 Note, this app is also deployed to Heroku and uses
- - Nodefly for monitoring `http://apm.nodefly.com/#dashboard` (from Heroku)
+ - Nodefly for monitoring `heroku addons:open nodefly`
  - Loggly for logging `https://financialtimes.loggly.com/`
+ - Blitz for load testing
 
 
 Running

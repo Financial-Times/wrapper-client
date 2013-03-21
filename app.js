@@ -1,6 +1,6 @@
 require('nodefly').profile(
     process.env.NODEFLY_APPLICATION_KEY,
-    [process.env.APPLICATION_NAME,'wrapper-client']
+    [process.env.APPLICATION_NAME,'Heroku']
 );
 
 var express = require("express"),
