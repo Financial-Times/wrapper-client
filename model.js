@@ -26,19 +26,30 @@
 
 exports.populate = function() {
     return {
+        headWrapperCss: "", // what's this?
+        footWrapperJs: "", // what's this?
+
         code: {
-            metaTitle:"",
-            metaDescription:"",
-            metaKeywords:"",
-            meta:"",
-            head:"",
-            css:"",
-            js:"",
-            foot:"",
-            dfpSiteName:"",
-            dfpZoneName:""
+            metaTitle:"<title>Wrapper page title BLAH BLAH</title>",
+            metaDescription:"<meta name='description' content='A wrapper page blah blah' />",
+            metaKeywords:"<meta name='keywords' content='keyword1 keyword2' />",
+            css:"<style type='text/css'>.mystyle {background-color:pink;}</style>",
+            js:"<script>console.log('My head script')</script>",
+            head:"", //??
+
+            meta:"meta", //?
+
+            foot:"<script>console.log('My foot script')</script>",
+            dfpSiteName:"dfpSiteName",
+            dfpZoneName:"dfpSiteName"
         },
         content: {
+            contentWell:"<div><p class='mystyle'>Main content well</p></div>",
+            rightRailContentWell: "<div><p>Right hand content well</p></div>",
+            secondColumn: "<div><p>Second column content well</p></div>",
+            header: "<header>This is the header</header>",
+            wide: "wide",
+            navigation: "<nav>This is the navigation</nav>"
 
         }
     }
