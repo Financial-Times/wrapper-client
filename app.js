@@ -27,7 +27,7 @@ if (cluster.isMaster) {
         // require the FT logging module
         logger = require("ft-node-modules/logger").init({
             loggly: {
-                logglyKey: "28e914ff-2027-43ca-b1d5-d9624dbe8e49",
+                logglyKey: process.env.LOGGLY_KEY,
                 logglyDomain: "financialtimes",
                 logLevel: "info"
             }
