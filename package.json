@@ -4,6 +4,8 @@
     "version": "0.0.1",
     "private": true,
     "dependencies": {
+        "cluster":"0.7.7",
+
         "express": "3.x",
         "request": "2.16.6",
         "dot": "0.2.6",
