@@ -1,8 +1,10 @@
+// Add Nodefly real time process monitoring
 require('nodefly').profile(
     process.env.NODEFLY_APPLICATION_KEY,
     [process.env.APPLICATION_NAME, 'Heroku']
 );
 
+// Add NodeTime process monitoring
 if (process.env.NODETIME_ACCOUNT_KEY) {
     require('nodetime').profile({
         accountKey: process.env.NODETIME_ACCOUNT_KEY,
@@ -10,7 +12,9 @@ if (process.env.NODETIME_ACCOUNT_KEY) {
     });
 }
 
-
+// Create a cluster of processes based on the available cores.
+// Note, Heroku has 4 cores per Dyno, so these can be utilised (up to the memory limits)
+// See load reports http://ldr.io/13pQRVX - one CPU and http://ldr.io/13pSYJt - four CPUs using cluster
 var cluster = require("cluster"),
     numCPUs = require("os").cpus().length;
 
@@ -19,6 +23,8 @@ if (cluster.isMaster) {
         cluster.fork();
 } else {
     var express = require("express"),
+
+        // require the FT logging module
         logger = require("ft-node-modules/logger").init({
             loggly: {
                 logglyKey: "28e914ff-2027-43ca-b1d5-d9624dbe8e49",
@@ -26,16 +32,20 @@ if (cluster.isMaster) {
                 logLevel: "info"
             }
         }),
+
+        // require the FT wrapper module
         wrapper = require("ft-node-modules/wrapper"),
         model = require("./model"),
+
+        // templating framework to process wrapper into HTML
         dot = require("express-dot");
 
-//dot.setGlobals({
-//    // global configuration
-//    // default is false, set true in production enviroment to cache partials
-//    partialCache: false,
-//    layout: false
-//});
+    //dot.setGlobals({
+    //    // global configuration
+    //    // default is false, set true in production environment to cache partials
+    //    partialCache: false,
+    //    layout: false
+    //});
 
     var app = express();
 
@@ -79,7 +89,7 @@ if (cluster.isMaster) {
         res.send("UUID: " + req.params.uuid);
     });
 
-//app.param("id", /^\s|\S?$/);
+    app.param("id", /^[a-z0-9]+$/);
     app.get('/wrapper/:id', function (request, response) {
         var wrapperId = request.params.id,
             result;
