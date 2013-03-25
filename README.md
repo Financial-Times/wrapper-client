@@ -10,7 +10,7 @@ It also does some cool stuff like:
  - provides and API to retrieve and process wrappers using Swagger API (coming soon)
  - uses doT templating with some regex config changes to easily process the `<!--ft.code.variable-->` style FT wrapper variables
 
-This app is also deployed to Heroku http://wrapper-client.herokuapp.com/wrapper/ftalphaville and uses:
+This app is also deployed to Heroku http://wrapper-client.herokuapp.com (e.g. http://wrapper-client.herokuapp.com/wrapper/ftalphaville) and uses:
  - Nodefly for realtime monitoring `heroku addons:open nodefly`
  - Nodetime for process monitoring `heroku addons:open nodetime`
  - Loggly for logging https://financialtimes.loggly.com/
@@ -28,7 +28,7 @@ Usage
 Check the app is up and running
     http://localhost:5000
 
-Request a wrapper (in this case `ftalphaville`) and process it
+Request a wrapper (in this case 'ftalphaville') and process it
     http://localhost:5000/wrapper/ftalphaville
 
 Note the data used to populate the wrapper in this example app comes from `model.js`. In the real-world, your app will need to populate the model with your content.
