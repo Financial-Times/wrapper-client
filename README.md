@@ -44,8 +44,8 @@ Swagger api
 Heroku Load testing
 -------------------
 On one dyno, with a clustered web node, this app bombs out at about 3200 concurrent requests (http://ldr.io/13pSYJt)
-H11 (backlog too deep) errors occur with one dyno https://devcenter.heroku.com/articles/http-routing
-R14 (memory quote exceeded) errors also occur.
+ - H11 (backlog too deep) errors occur with one dyno https://devcenter.heroku.com/articles/http-routing
+ - R14 (memory quote exceeded) errors also occur.
 
 The effect of this is that the web becomes unresponsive until the backlog clears or the Dynos are restarted by Heroku.
 
