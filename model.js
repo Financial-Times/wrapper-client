@@ -31,13 +31,13 @@ exports.populate = function() {
 
         code: {
             metaTitle:"<title>Wrapper page title BLAH BLAH</title>",
-            metaDescription:"<meta name='description' content='A wrapper page blah blah' />",
-            metaKeywords:"<meta name='keywords' content='keyword1 keyword2' />",
+            metaDescription:"A wrapper page blah blah",
+            metaKeywords:"keyword1 keyword2",
             css:"<style type='text/css'>.mystyle {background-color:pink;}</style>",
             js:"<script>console.log('My head script')</script>",
             head:"", //??
 
-            meta:"meta", //?
+            meta:"<meta name='other1' content='value1'/><meta name='other2' content='value2'/>", //other metadata tags, e.g. for tracking
 
             foot:"<script>console.log('My foot script')</script>",
             dfpSiteName:"dfpSiteName",

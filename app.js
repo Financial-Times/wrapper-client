@@ -89,7 +89,7 @@ if (cluster.isMaster) {
         res.send("UUID: " + req.params.uuid);
     });
 
-    app.param("id", /^[a-z0-9]+$/);
+    app.param("id", /^[a-z0-9\-_]+$/);
     app.get('/wrapper/:id', function (request, response) {
         var wrapperId = request.params.id,
             result;
