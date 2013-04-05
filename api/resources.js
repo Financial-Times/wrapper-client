@@ -4,7 +4,7 @@ var url = require("url");
 var swe = sw.errors;
 
 var wrapper = require("ft-node-modules/wrapper"),
-    wrapperModel = require("../model");
+    wrapperModel = require("./sampleData");
 
 //function writeResponse (res, data) {
 //    sw.setHeaders(res);

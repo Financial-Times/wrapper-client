@@ -23,7 +23,6 @@ You are a known FT third-party supplier of content and you have been set up with
 You will have been given a url for each wrapper that serves the raw wrapper with placeholder variables for you to insert your content.
 By cloning this app and deploying it to your servers, you will be able to create
 
-
 Running
 -------
     npm install
@@ -35,7 +34,6 @@ Use the API to make requests
 
     http://localhost:5000/docs
 
-Note the data used to populate the wrapper in this example app comes from `model.js`. In the real-world, your app will need to populate the model with your content.
 
 Todo
 ----
