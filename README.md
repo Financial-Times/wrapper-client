@@ -7,7 +7,7 @@ It uses the `ft-node-modules/wrapper` and `ft-node-modules/logger` modules avail
 
 It also does some cool stuff like:
  - clustering the web workers up to the available CPUs - this also works on Heroku as each Dyno has 4 cores,
- - provides an API to retrieve and process wrappers using Swagger API (coming soon)
+ - provides an API-first approach to retrieve and process wrappers using Swagger API
  - uses doT templating with some regex config changes to easily process the `<!--ft.code.variable-->` style FT wrapper variables
 
 This app is also deployed to Heroku http://wrapper-client.herokuapp.com (e.g. http://wrapper-client.herokuapp.com/wrapper/ftalphaville) and uses:
