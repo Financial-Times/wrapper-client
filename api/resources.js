@@ -21,8 +21,8 @@ exports.findById = {
         "summary": "Find wrapper",
         "method": "GET",
         "params": [
-            param.path("wrapper", "Wrapper to be fetched e.g. 'ftalphaville'", "string"),
-            param.query("refresh", "Refresh the wrapper from source", "boolean", false, false)
+            param.path("wrapper", "Wrapper to be fetched e.g. 'ftalphaville'", "string")
+            //param.query("refresh", "Refresh the wrapper from source", "boolean", false, false)
         ],
         "responseClass": "Wrapper",
         "errorResponses": [swe.invalid('wrapper'), swe.notFound('wrapper')],
