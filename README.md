@@ -38,6 +38,10 @@ There are two endpoints
  - GET a wrapper
  - POST a JSON model (see `api/sampleData.js`) to a wrapper and get the resulting HTML
 
+Sample CURL request to process a wrapper with a model
+------
+    curl "http://wrapper-client.herokuapp.com/page/code-sample?api_key=dev" -H "Content-Type: application/json" --data-binary "{\"headWrapperCss\":\"\",\"footWrapperJs\":\"\",\"code\":{\"metaTitle\":\"<title>Wrapper page title BLAH BLAH</title>\",\"metaDescription\":\"A wrapper page blah blah\",\"metaKeywords\":\"keyword1 keyword2\",\"css\":\"<style type='text/css'>.mystyle {background-color:pink;}</style>\",\"js\":\"<script>console.log('My head script')</script>\",\"head\":\"\",\"meta\":\"<meta name='other1' content='value1'/><meta name='other2' content='value2'/>\",\"foot\":\"<script>console.log('My foot script')</script>\",\"dfpSiteName\":\"dfpSiteName\",\"dfpZoneName\":\"dfpSiteName\"},\"content\":{\"contentWell\":\"<div><p class='mystyle'>Main content well</p></div>\",\"rightRailContentWell\":\"<div><p>Right hand content well</p></div>\",\"secondColumn\":\"<div><p>Second column content well</p></div>\",\"header\":\"<header>This is the header</header>\",\"wide\":\"wide\",\"navigation\":\"<nav>This is the navigation</nav>\"}}"
+
 
 Todo
 ----
