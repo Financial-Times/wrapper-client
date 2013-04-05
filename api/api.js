@@ -83,7 +83,7 @@ if (cluster.isMaster) {
         .addPost(resources.addPage);
 
     // Configures the app's base path and api version.
-    swagger.configure("http://" + host + ":" + port, "0.1");
+    swagger.configure(host + ":" + port, "0.1");
 
     // Serve up swagger ui at /docs via static route
     var docs_handler = express.static(__dirname + '/swagger-ui-1.1.7/');
