@@ -41,7 +41,7 @@ if (cluster.isMaster) {
     var express = require("express"),
         url = require("url"),
         swagger = require("swagger-node-express/Common/node/swagger"),
-        host = process.env.HOST || "localhost",
+        host = process.env.HOST || "http://localhost",
         port = process.env.PORT || 8003;
 
     var resources = require("./resources.js");
