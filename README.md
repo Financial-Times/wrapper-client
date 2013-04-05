@@ -31,21 +31,19 @@ Running
 
 Usage
 -----
-Check the app is up and running
-    http://localhost:5000
+Use the API to make requests
 
-Request a wrapper (in this case 'ftalphaville') and process it
-    http://localhost:5000/wrapper/ftalphaville
+    http://localhost:5000/docs
 
 Note the data used to populate the wrapper in this example app comes from `model.js`. In the real-world, your app will need to populate the model with your content.
 
 Todo
 ----
 Wrapper validation
+Force wrapper refresh
 404 on wrapper
 Tests
 ft.com subdomain (for cookies)
-Swagger api
 
 Heroku Load testing
 -------------------
