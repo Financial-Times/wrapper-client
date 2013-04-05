@@ -41,8 +41,8 @@ if (cluster.isMaster) {
     var express = require("express"),
         url = require("url"),
         swagger = require("swagger-node-express/Common/node/swagger"),
-        host = process.env.HOST || "http://localhost",
-        port = process.env.PORT || 8003;
+        port = process.env.PORT || 8003,
+        host = process.env.HOST || "http://localhost:" + port
 
     var resources = require("./resources.js");
 
@@ -83,7 +83,7 @@ if (cluster.isMaster) {
         .addPost(resources.addPage);
 
     // Configures the app's base path and api version.
-    swagger.configure(host + ":" + port, "0.1");
+    swagger.configure(host, "0.1");
 
     // Serve up swagger ui at /docs via static route
     var docs_handler = express.static(__dirname + '/swagger-ui-1.1.7/');
