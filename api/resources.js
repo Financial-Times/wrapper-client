@@ -57,10 +57,10 @@ exports.findById = {
     }
 };
 
-exports.addPage = {
+exports.processModelIntoWrapper = {
     'spec': {
-        "description": "Page operations",
-        "path": "/page/{wrapper}",
+        "description": "Wrapper operations",
+        "path": "/wrapper/{wrapper}",
         "notes": "Process a model into a wrapper",
         "summary": "Process a model into a wrapper",
         "method": "POST",
@@ -68,9 +68,9 @@ exports.addPage = {
             param.path("wrapper", "The wrapper to populate","string"),
             param.post("string", "JSON model of the content to populate",JSON.stringify(wrapperModel.populate()))
         ],
-        "responseClass": "Page",
+        "responseClass": "Wrapper",
         "errorResponses": [swe.invalid('input')],
-        "nickname": "addPage",
+        "nickname": "processModelIntoWrapper",
         "consumes": ["application/json"],
         "produces": ["text/html"]
     },

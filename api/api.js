@@ -80,7 +80,7 @@ if (cluster.isMaster) {
     // Add models and methods to swagger
     swagger.addModels(resources.models)
         .addGet(resources.findById)
-        .addPost(resources.addPage);
+        .addPost(resources.processModelIntoWrapper);
 
     // Configures the app's base path and api version.
     swagger.configure(host, "0.1");
